@@ -1,0 +1,22 @@
+.front {
+  background: #434343;
+  width: available;
+  height: 10vh;
+  position: sticky;
+  display: flex;
+  place-items: center;
+}
+
+.item {
+  display: flex;
+  position: sticky;
+  border-radius: 10px;
+  margin-left: 5%;
+
+  font-family: "Consolas", serif;
+  font-style: normal;
+  font-size: 20px;
+  color: rgb(234, 225, 38);
+
+  user-select: none;
+}
