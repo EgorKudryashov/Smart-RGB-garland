@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChromePicker } from "react-color";
 
-const RGBSelector = ({ color, setColor }) => {
+const RGBSelector = ({ color, setColor, setCancel }) => {
   const [pickerColor, setPickerColor] = useState(color);
 
   return (
@@ -14,7 +14,7 @@ const RGBSelector = ({ color, setColor }) => {
         ✓
       </button>
       <button
-        onClick={() => setColor(color)}
+        onClick={() => setCancel()}
         className="btn-danger"
         style={{ marginLeft: "20px" }}
       >
