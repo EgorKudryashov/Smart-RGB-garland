@@ -1,18 +1,26 @@
 import React from "react";
 import classes from "./window.module.css";
+import { GetConnection, GetGarland } from "../../api/GET";
 
-const ConnectionWindow = ({ visible, setVisible }) => {
+const ConnectionWindow = ({ isVisible, setVisible, setDevice }) => {
   const rootClasses = [classes.ground];
 
-  if (!visible) {
+  if (!isVisible) {
     rootClasses.push(classes.active);
   }
+  const ConnectionToDevice = async () => {
+    await GetConnection(setVisible, setDevice);
 
+    //await GetGarland();
+  };
   return (
     <div className={rootClasses.join(" ")}>
       <div className={classes.content}>
         Отсутсвует подключение к устройству{" "}
-        <button onClick={() => setVisible(!visible)}></button>
+        <button className="btn btn-info" onClick={() => ConnectionToDevice()}>
+          {" "}
+          🗘
+        </button>
       </div>
     </div>
   );

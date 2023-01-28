@@ -1,37 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import ConnectionWindow from "./components/ConnectionWindow/ConnectionWindow";
 import ListOfLamp from "./components/ListOfLamp/ListOfLamp";
-import { garland } from "./garland";
+
+import { GetGarland, GetConnection } from "./api/GET";
 
 function App() {
-  const [connection, setConnection] = useState(false);
-  const [device, setDevice] = useState({
-    id: 1,
-    name: "smart RGB-garland",
-  });
+  const [isConnection, setIsConnection] = useState(false);
+  const [device, setDevice] = useState("");
 
-  /* const [garland, setGarland] = useState([
-    { id: 0, color: "red" },
-    { id: 1, color: "blue" },
-    { id: 2, color: "red" },
-    { id: 3, color: "blue" },
-    { id: 4, color: "red" },
-    { id: 5, color: "blue" },
-    { id: 6, color: "yellow" },
-    { id: 7, color: "blue" },
-    { id: 8, color: "green" },
-    { id: 9, color: "black" },
-  ]);
-  */
+  const ConnectionToDevice = async () => {
+    await GetConnection(setIsConnection, setDevice);
+    console.log(isConnection);
+    console.log(device);
+
+    //await GetGarland();
+  };
+
+  useEffect(() => ConnectionToDevice, []);
 
   return (
     <div className="App">
-      <Navbar connection={connection} device={device} />
-      {connection ? (
-        <ListOfLamp lampList={garland} />
+      <Navbar connection={isConnection} device={device} />
+      {isConnection ? (
+        <ListOfLamp />
       ) : (
-        <ConnectionWindow visible={connection} setVisible={setConnection} />
+        <ConnectionWindow
+          isVisible={isConnection}
+          setVisible={setIsConnection}
+          setDevice={setDevice}
+        />
       )}
     </div>
   );

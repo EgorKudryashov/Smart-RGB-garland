@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Lamp from "../Lamp/Lamp";
+import { GetGarland } from "../../api/GET";
+import { garland } from "../../garland";
 
-const ListOfLamp = ({ lampList }) => {
+const ListOfLamp = () => {
   const [changeLamp, setChangeLamp] = useState(false);
+
+  useEffect(() => {
+    GetGarland();
+  }, []);
 
   return (
     <div className="conteiner">
       <div className="row align-items-center" style={{ margin: "20px" }}>
-        {lampList.map((item) => (
+        {garland.map((item) => (
           <div
             className="col-2 align-self-center"
             key={item.id}

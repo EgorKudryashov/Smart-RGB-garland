@@ -1,11 +1,13 @@
 from xml.etree.ElementTree import tostring
 from flask import Flask
+from flask_cors import CORS
 from flask import jsonify
 from flask import request
 
 from data import garland
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def hello():
@@ -23,10 +25,11 @@ def get_garland_data():
 def change_lamp_color():
     # obtain parameters from get request
     id = int(request.args.get("id"))
-    color = request.args.get("color")
+    color = str(request.args.get("color"))
 
-    garland[id].color=color
-    return jsonify([a.serialize() for a in garland])
+    garland[id].color="#"+color
+    return "200"
+    #return jsonify([a.serialize() for a in garland])
 
 
 if __name__ == "__main__":
