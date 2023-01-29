@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Lamp from "../Lamp/Lamp";
 import { GetGarland } from "../../api/GET";
-import { garland } from "../../garland";
 
 const ListOfLamp = () => {
-  const [changeLamp, setChangeLamp] = useState(false);
+  const [garland, setGarland] = useState([{ id: 0, color: "red" }]);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    GetGarland();
+    GetGarland(setGarland);
   }, []);
 
   return (
@@ -22,8 +22,10 @@ const ListOfLamp = () => {
             <Lamp
               id={item.id}
               color={item.color}
-              change={changeLamp}
-              setChange={setChangeLamp}
+              lamps={garland}
+              setChangeLamp={setGarland}
+              update={update}
+              setUpdate={setUpdate}
             />
           </div>
         ))}

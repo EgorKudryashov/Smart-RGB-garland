@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import classes from "./lamp.module.css";
 import RGBSelector from "../RGBselector/RGBSelector";
-import { garland } from "../../garland";
 import { GetChangeLampColor } from "../../api/GET";
 
-const Lamp = ({ id, color, change, setChange }) => {
+const Lamp = ({ id, color, lamps, setChangeLamp, update, setUpdate }) => {
   const [colorPickerVisible, setColorPickerVisible] = useState(false);
 
   function ChooseColor() {
     setColorPickerVisible(true);
   }
   function SetColor(color) {
+    let garland = lamps;
     garland[id].color = color;
-    console.log(color);
+
     let colorRequest = color.substring(1);
     GetChangeLampColor(id, colorRequest);
 
-    setChange(!change);
+    setChangeLamp(garland);
     setColorPickerVisible(false);
+
+    setUpdate(!update);
   }
   function CancelClick() {
     setColorPickerVisible(false);
