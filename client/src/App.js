@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ConnectionWindow from "./components/ConnectionWindow/ConnectionWindow";
 import ListOfLamp from "./components/ListOfLamp/ListOfLamp";
 
-import { GetGarland, GetConnection } from "./api/GET";
+import { GetConnection } from "./api/GET";
 
 function App() {
   const [isConnection, setIsConnection] = useState(false);
@@ -11,13 +11,11 @@ function App() {
 
   const ConnectionToDevice = async () => {
     await GetConnection(setIsConnection, setDevice);
-    console.log(isConnection);
-    console.log(device);
-
-    //await GetGarland();
   };
 
-  useEffect(() => ConnectionToDevice, []);
+  useEffect(() => {
+    ConnectionToDevice();
+  }, []);
 
   return (
     <div className="App">

@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./window.module.css";
-import { GetConnection, GetGarland } from "../../api/GET";
+import { GetConnection } from "../../api/GET";
 
 const ConnectionWindow = ({ isVisible, setVisible, setDevice }) => {
   const rootClasses = [classes.ground];
