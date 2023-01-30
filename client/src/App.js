@@ -4,10 +4,13 @@ import ConnectionWindow from "./components/ConnectionWindow/ConnectionWindow";
 import ListOfLamp from "./components/ListOfLamp/ListOfLamp";
 
 import { GetConnection } from "./api/GET";
+import ListOfModes from "./components/ListOfModes/ListOfModes";
 
 function App() {
   const [isConnection, setIsConnection] = useState(false);
   const [device, setDevice] = useState("");
+
+  const [isLampsPage, setIsLampsPage] = useState(true);
 
   const ConnectionToDevice = async () => {
     await GetConnection(setIsConnection, setDevice);
@@ -19,9 +22,18 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar connection={isConnection} device={device} />
+      <Navbar
+        connection={isConnection}
+        device={device}
+        isLampsPage={isLampsPage}
+        setIsLampsPage={setIsLampsPage}
+      />
       {isConnection ? (
-        <ListOfLamp />
+        isLampsPage ? (
+          <ListOfLamp />
+        ) : (
+          <ListOfModes />
+        )
       ) : (
         <ConnectionWindow
           isVisible={isConnection}
