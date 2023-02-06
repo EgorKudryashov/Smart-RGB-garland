@@ -10,7 +10,11 @@ const RGBSelector = ({ color, setColor, setCancel }) => {
         color={pickerColor}
         onChange={(updatedColor) => setPickerColor(updatedColor.hex)}
       />
-      <button onClick={() => setColor(pickerColor)} className="btn-success">
+      <button
+        onClick={() => setColor(pickerColor)}
+        className="btn-success"
+        style={{ marginLeft: "40%" }}
+      >
         ✓
       </button>
       <button
