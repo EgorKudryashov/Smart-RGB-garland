@@ -14,7 +14,7 @@ export const GetConnection = async (setResult, setDevice) => {
   }
 };
 
-export const GetGarland = async (setGarland) => {
+export const GetGarland = async (setGarland, setCount) => {
   try {
     await axios.get(`http:${backendPath}/client/garland/`).then((responce) => {
       let i = 0;
@@ -23,6 +23,8 @@ export const GetGarland = async (setGarland) => {
         newGarland[i] = element;
         ++i;
       });
+
+      setCount(i);
       setGarland(newGarland);
     });
   } catch (e) {

@@ -1,0 +1,30 @@
+.area {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.colorCenter {
+  height: 50px;
+  width: 50px;
+  border: solid 2px;
+  border-radius: 50%;
+  cursor: pointer;
+  align-self: center;
+  background: linear-gradient(
+    90deg,
+    hsl(0, 100%, 50%),
+    hsl(30, 100%, 50%),
+    hsl(60, 100%, 50%),
+    hsl(90, 100%, 50%),
+    hsl(120, 100%, 50%),
+    hsl(150, 100%, 50%),
+    hsl(180, 100%, 50%),
+    hsl(210, 100%, 50%),
+    hsl(240, 100%, 50%),
+    hsl(270, 100%, 50%),
+    hsl(300, 100%, 50%),
+    hsl(330, 100%, 50%),
+    hsl(0, 100%, 50%)
+  );
+}
