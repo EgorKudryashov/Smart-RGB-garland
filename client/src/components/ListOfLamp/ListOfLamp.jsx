@@ -4,7 +4,7 @@ import { GetGarland } from "../../api/GET";
 import GroupElement from "../GroupElement/GroupElement";
 
 const ListOfLamp = () => {
-  const [garland, setGarland] = useState([{ id: 0, color: "red" }]);
+  const [garland, setGarland] = useState([{ id: 0, r: 200, g: 0, b: 0 }]);
   const [update, setUpdate] = useState(false);
 
   const [totalLamps, setTotalLamps] = useState(0);
@@ -75,7 +75,9 @@ const ListOfLamp = () => {
             >
               <Lamp
                 id={item.id}
-                color={item.color}
+                r={item.r}
+                g={item.g}
+                b={item.b}
                 lamps={garland}
                 setChangeLamp={setGarland}
                 update={update}

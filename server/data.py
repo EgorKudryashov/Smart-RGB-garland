@@ -1,24 +1,15 @@
 from garland_template import Lamp
 
 garland = [
-  Lamp( 0, "red" ),
-  Lamp(1, "blue"),
-  Lamp(2, "red"),
-  Lamp( 3, "yellow" ),
-  Lamp(4, "blue"),
-  Lamp(5, "green"),
-  Lamp( 6, "green" ),
-  Lamp(7, "blue"),
-  Lamp(8, "red"),
-  Lamp(9, "pink" ),
-  Lamp(10, "blue"),
-  Lamp(11, "black"),
-  Lamp(12, "red"),
-  Lamp( 13, "red" ),
-  Lamp(14, "yellow"),
-  Lamp(15, "red"),
-  Lamp( 16, "red" ),
-  Lamp(17, "blue"),
-  Lamp(18, "green"),
-  Lamp(19, "red" )
+  Lamp(0, 40, 250, 100),
+  Lamp(1, 40, 250, 200),
+  Lamp(2, 200, 0, 0),
+  Lamp(3, 50, 200, 100),
+  Lamp(4, 200, 200, 0),
+  Lamp(5, 0, 0, 255),
+  Lamp(6, 40, 250, 200),
+  Lamp(7, 200, 0, 0),
+  Lamp(8, 50, 200, 100),
+  Lamp(9, 200, 200, 0),
+  Lamp(10, 0, 0, 255)
 ]
