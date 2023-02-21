@@ -5,7 +5,7 @@ import { GetChangeLampColor } from "../../api/GET";
 
 const GroupElement = ({ ids, lamps, setLamps, update, setUpdate }) => {
   const [colorPickerVisible, setColorPickerVisible] = useState(false);
-  const defaultColor = "#FFFFFF";
+  const defaultColor = { r: 255, g: 255, b: 255 };
 
   function ChooseColor() {
     setColorPickerVisible(true);
@@ -14,10 +14,11 @@ const GroupElement = ({ ids, lamps, setLamps, update, setUpdate }) => {
   function SetColor(color) {
     let garland = lamps;
 
-    let colorRequest = color.substring(1);
     for (let i = 0; i < ids.length; ++i) {
-      garland[ids[i]].color = color;
-      GetChangeLampColor(ids[i], colorRequest);
+      garland[ids[i]].r = color.r;
+      garland[ids[i]].g = color.g;
+      garland[ids[i]].b = color.b;
+      GetChangeLampColor(ids[i], color);
     }
     setLamps(garland);
     setColorPickerVisible(false);

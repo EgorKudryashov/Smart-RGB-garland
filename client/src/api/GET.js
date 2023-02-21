@@ -35,7 +35,7 @@ export const GetGarland = async (setGarland, setCount) => {
 export const GetChangeLampColor = async (id, color) => {
   try {
     await axios.get(
-      `http:${backendPath}/client/change_color/?id=${id}&color=${color}`
+      `http:${backendPath}/client/change_color/?id=${id}&r=${color.r}&g=${color.g}&b=${color.b}`
     );
   } catch (e) {
     alert("Вознила ошибка");

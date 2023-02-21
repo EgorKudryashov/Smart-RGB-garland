@@ -3,7 +3,7 @@ import classes from "./lamp.module.css";
 import RGBSelector from "../RGBselector/RGBSelector";
 import { GetChangeLampColor } from "../../api/GET";
 
-const Lamp = ({ id, color, lamps, setChangeLamp, update, setUpdate }) => {
+const Lamp = ({ id, r, g, b, lamps, setChangeLamp, update, setUpdate }) => {
   const [colorPickerVisible, setColorPickerVisible] = useState(false);
 
   function ChooseColor() {
@@ -11,10 +11,11 @@ const Lamp = ({ id, color, lamps, setChangeLamp, update, setUpdate }) => {
   }
   function SetColor(color) {
     let garland = lamps;
-    garland[id].color = color;
+    garland[id].r = color.r;
+    garland[id].g = color.g;
+    garland[id].b = color.b;
 
-    let colorRequest = color.substring(1);
-    GetChangeLampColor(id, colorRequest);
+    GetChangeLampColor(id, color);
 
     setChangeLamp(garland);
     setColorPickerVisible(false);
@@ -29,7 +30,9 @@ const Lamp = ({ id, color, lamps, setChangeLamp, update, setUpdate }) => {
     <div className={classes.lamp}>
       {colorPickerVisible ? (
         <RGBSelector
-          color={color}
+          r={r}
+          g={g}
+          b={b}
           setColor={SetColor}
           setCancel={CancelClick}
         />
@@ -37,7 +40,7 @@ const Lamp = ({ id, color, lamps, setChangeLamp, update, setUpdate }) => {
         <div
           onClick={() => ChooseColor()}
           className={classes.color}
-          style={{ background: color }}
+          style={{ background: `rgb(${r},${g},${b})` }}
         ></div>
       )}
     </div>

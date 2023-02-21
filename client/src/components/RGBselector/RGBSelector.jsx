@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { ChromePicker } from "react-color";
 
-const RGBSelector = ({ color, setColor, setCancel }) => {
-  const [pickerColor, setPickerColor] = useState(color);
+const RGBSelector = ({ r, g, b, setColor, setCancel }) => {
+  const [pickerColor, setPickerColor] = useState({ r: r, g: g, b: b });
 
   return (
     <div style={{ zIndex: "3" }}>
       <ChromePicker
         color={pickerColor}
-        onChange={(updatedColor) => setPickerColor(updatedColor.hex)}
+        onChange={(updatedColor) => setPickerColor(updatedColor.rgb)}
       />
       <button
         onClick={() => setColor(pickerColor)}

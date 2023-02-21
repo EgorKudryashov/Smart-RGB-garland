@@ -25,9 +25,13 @@ def get_garland_data():
 def change_lamp_color():
     # obtain parameters from get request
     id = int(request.args.get("id"))
-    color = str(request.args.get("color"))
+    r = int(request.args.get("r"))
+    g = int(request.args.get("g"))
+    b = int(request.args.get("b"))
 
-    garland[id].color="#"+color
+    garland[id].r = r
+    garland[id].g = g
+    garland[id].b = b
     return "200"
     #return jsonify([a.serialize() for a in garland])
 

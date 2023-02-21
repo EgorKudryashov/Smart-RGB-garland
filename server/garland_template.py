@@ -1,13 +1,19 @@
 class Lamp(object):
     id = ""
-    color = ""
+    r = ""
+    g = ""
+    b = ""
 
-    def __init__(self, _id, _color):
+    def __init__(self, _id, _r,_g,_b):
         self.id = _id
-        self.color = _color
+        self.r = _r
+        self.g = _g
+        self.b = _b
 
     def serialize(self):
         return {
             "id": self.id,
-            "color": self.color,
+            "r": self.r,
+            "g": self.g,
+            "b": self.b
         }
