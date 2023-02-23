@@ -37,9 +37,9 @@ def change_lamp_color():
     return "200"
 
 
-@app.route("/client/set_brigthness/", methods=["GET"])
+@app.route("/client/set_brightness/", methods=["GET"])
 def change_garland_brightness():
-    param = request.args.get("brigthness")
+    param = int(request.args.get("bright"))
     if (0 < param & param < 255):
         setBrigthnessOnDevice(param)
         return "200"
@@ -47,9 +47,9 @@ def change_garland_brightness():
         return "404"
 
 
-@app.route("/client/choose_mode/", method=["GET"])
+@app.route("/client/choose_mode/", methods=["GET"])
 def choose_garland_mode():
-    mode = request.args.get("mode")
+    mode = int(request.args.get("mode"))
     if (mode < 4):
         chooseModeOnDevice(mode)
         return "200"

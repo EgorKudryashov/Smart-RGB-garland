@@ -80,7 +80,7 @@ void loop() {
     GarlandBlink(500);
   }
   if (garlandMode == 3){
-    GarlandFade(200);
+    GarlandFade(500);
   }
 
 }
@@ -299,13 +299,14 @@ void GarlandBlink(int wait){
 
 void GarlandFade(int FadeSpeed)
 {
-  for (int i = 180; i > 5; i-=10)
+  int step = garlandBright / 6 ;
+  for (int i = garlandBright; i > 2; i-=step)
   {
     strip.setBrightness(i);
     strip.show();
     delay(FadeSpeed);
   }
-  for (int i = 5; i < 180; i+=10)
+  for (int i = 2; i < garlandBright; i+=step)
   {
     strip.setBrightness(i);
     strip.show();

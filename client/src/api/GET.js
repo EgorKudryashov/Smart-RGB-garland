@@ -45,7 +45,7 @@ export const GetChangeLampColor = async (id, color) => {
 export const setGarlandBrightness = async (bright) => {
   try {
     await axios.get(
-      `http://${backendPath}/client/set_brigthness/?bright=${bright}`
+      `http://${backendPath}/client/set_brightness/?bright=${bright}`
     );
   } catch (e) {
     alert("Set brightness ERROR");
