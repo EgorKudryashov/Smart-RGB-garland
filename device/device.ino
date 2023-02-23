@@ -107,9 +107,9 @@ void loadColorsOnGarland (){
 
 void onConnection(){
   /*Собираем строку в формате JSON*/
-  String res = "{\"name\":";
+  String res = "{\"name\":\"";
   res += device_name;
-  res+= ",\"lampsNumber\":";
+  res+= "\",\"lampsNumber\":";
   res+= lampsNumber;
   res+='}';
   //Serial.println(res);
