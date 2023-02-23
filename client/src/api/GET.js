@@ -9,7 +9,7 @@ export const GetConnection = async (setResult, setDevice) => {
       setResult(true);
     });
   } catch (e) {
-    alert("Возникла ошибка");
+    alert("Connection ERROR");
     setResult(false);
   }
 };
@@ -28,7 +28,7 @@ export const GetGarland = async (setGarland, setCount) => {
       setGarland(newGarland);
     });
   } catch (e) {
-    alert("Возникла ошибка");
+    alert("Get garland info ERROR");
   }
 };
 
@@ -38,6 +38,24 @@ export const GetChangeLampColor = async (id, color) => {
       `http:${backendPath}/client/change_color/?id=${id}&r=${color.r}&g=${color.g}&b=${color.b}`
     );
   } catch (e) {
-    alert("Вознила ошибка");
+    alert("Change lamp color ERROR");
+  }
+};
+
+export const setGarlandBrightness = async (bright) => {
+  try {
+    await axios.get(
+      `http://${backendPath}/client/set_brigthness/?bright=${bright}`
+    );
+  } catch (e) {
+    alert("Set brightness ERROR");
+  }
+};
+
+export const ChooseGarlandMode = async (mode) => {
+  try {
+    await axios.get(`http:${backendPath}/client/choose_mode/?mode=${mode}`);
+  } catch (e) {
+    alert("Mode change ERROR");
   }
 };

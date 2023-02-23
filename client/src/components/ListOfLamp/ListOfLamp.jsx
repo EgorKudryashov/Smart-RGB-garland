@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Lamp from "../Lamp/Lamp";
-import { GetGarland } from "../../api/GET";
+import { GetGarland, setGarlandBrightness } from "../../api/GET";
 import GroupElement from "../GroupElement/GroupElement";
 
-const ListOfLamp = () => {
+const ListOfLamp = ({ bright, setBright }) => {
   const [garland, setGarland] = useState([{ id: 0, r: 200, g: 0, b: 0 }]);
   const [update, setUpdate] = useState(false);
 
@@ -30,6 +30,14 @@ const ListOfLamp = () => {
     setLampGroups(groups);
   }
 
+  function setBrightness() {
+    let brightness = document.getElementById("input_bright").value;
+    if (bright !== brightness) {
+      setBright(brightness);
+      setGarlandBrightness(brightness);
+    }
+  }
+
   //Getting information about garland from server
   useEffect(() => {
     GetGarland(setGarland, setTotalLamps);
@@ -42,6 +50,25 @@ const ListOfLamp = () => {
 
   return (
     <div className="conteiner">
+      <div className="row" style={{ marginLeft: "70px", marginTop: "20px" }}>
+        <h5>Brightness</h5>
+        <input
+          className="col-2"
+          style={{ marginLeft: "12px" }}
+          type="text"
+          placeholder={bright}
+          id="input_bright"
+        />
+        <button
+          className="col-1 btn-success"
+          style={{ marginLeft: "5px", width: "10px" }}
+          onClick={() => {
+            setBrightness();
+          }}
+        >
+          ✓
+        </button>
+      </div>
       <div className="row" style={{ marginTop: "20px" }}>
         <div className="col-2" style={{ borderRight: "5px solid teal" }}>
           {lampGroups.map((item, iter) => (
