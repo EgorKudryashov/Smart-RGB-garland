@@ -10,7 +10,11 @@ function App() {
   const [isConnection, setIsConnection] = useState(false);
   const [device, setDevice] = useState("");
 
+  const [activeMode, setActiveMode] = useState(0);
+
   const [isLampsPage, setIsLampsPage] = useState(true);
+
+  const [bright, setBright] = useState(10);
 
   const ConnectionToDevice = async () => {
     await GetConnection(setIsConnection, setDevice);
@@ -30,9 +34,9 @@ function App() {
       />
       {isConnection ? (
         isLampsPage ? (
-          <ListOfLamp />
+          <ListOfLamp bright={bright} setBright={setBright} />
         ) : (
-          <ListOfModes />
+          <ListOfModes activeMode={activeMode} setActiveMode={setActiveMode} />
         )
       ) : (
         <ConnectionWindow
