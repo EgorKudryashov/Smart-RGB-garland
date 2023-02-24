@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Lamp from "../Lamp/Lamp";
-import { GetGarland, setGarlandBrightness } from "../../api/GET";
+import { setGarlandBrightness } from "../../api/GET";
 import GroupElement from "../GroupElement/GroupElement";
 
-const ListOfLamp = ({ bright, setBright }) => {
-  const [garland, setGarland] = useState([{ id: 0, r: 200, g: 0, b: 0 }]);
+const ListOfLamp = ({
+  garland,
+  setGarland,
+  totalLamps,
+  setTotalLamps,
+  bright,
+  setBright,
+}) => {
   const [update, setUpdate] = useState(false);
 
-  const [totalLamps, setTotalLamps] = useState(0);
   const [lampGroups, setLampGroups] = useState([[]]);
   const lampInGroup = 6;
 
@@ -37,11 +42,6 @@ const ListOfLamp = ({ bright, setBright }) => {
       setGarlandBrightness(brightness);
     }
   }
-
-  //Getting information about garland from server
-  useEffect(() => {
-    GetGarland(setGarland, setTotalLamps);
-  }, []);
 
   //Create lamp groups elements
   useEffect(() => {

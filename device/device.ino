@@ -63,9 +63,6 @@ void setup() {
 
   strip.begin();  // начинаем
   strip.show();
-
-  defaultLamps();
-
 }
 
 void loop() {
@@ -85,16 +82,6 @@ void loop() {
 
 }
 
-void defaultLamps (){
-  strip.setBrightness(5);
-  strip.show();
-  for (int i=0; i<5; ++i){
-    strip.setPixelColor(i, 0xFFFFFF);
-  }
-  delay(10);
-  strip.show();
-}
-
 void loadColorsOnGarland (){
   for (int i=0; i<lampsNumber; ++i){
     strip.setPixelColor(i, garland[i].r, garland[i].g, garland[i].b);    
@@ -112,7 +99,6 @@ void onConnection(){
   res+= "\",\"lampsNumber\":";
   res+= lampsNumber;
   res+='}';
-  //Serial.println(res);
   server.send(200, "application/json",res);
 }
 
@@ -120,19 +106,7 @@ void refreshAllLamps(){
 
   DynamicJsonBuffer jsonBuffer(1000);
   JsonObject& root = jsonBuffer.parseObject(server.arg("plain"));
-  Serial.println("New connection");
-/*  String message = "Number of args received:";
-  message += server.args();      // получить количество параметров
-  message += "\n";               // переход на новую строку
 
-  for (int i = 0; i < server.args(); i++) 
-  {
-    message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
-    message += server.argName(i) + ": ";      // получить имя параметра
-    message += server.arg(i) + "\n";          // получить значение параметра
-  } 
-  Serial.println(message);
-  */
   for (int i=0; i<lampsNumber; ++i){
     garland[i].r = root["lamps"][i]["r"];
     garland[i].g = root["lamps"][i]["g"];
@@ -156,7 +130,6 @@ void setLampsBrightness (){
   else
   { // параметр найден
     bright = (server.arg("bright")).toInt();
-    Serial.println(bright);
     if (bright>=255) {isTrue = false;}
   }
 
@@ -186,7 +159,6 @@ void changeLampColor(){
   else
   { // параметр найден
     id = (server.arg("id")).toInt();
-    Serial.println(id);
     if (id>=lampsNumber) {change = false;}
   }
 
@@ -198,8 +170,6 @@ void changeLampColor(){
   else
   { // параметр найден
     r = server.arg("r").toInt();
-    Serial.print(r);
-    Serial.print(' ');
     if (r>=256) {change = false;}
   }
   if (server.arg("g")== "") 
@@ -210,8 +180,6 @@ void changeLampColor(){
   else
   { // параметр найден
     g = server.arg("g").toInt();
-    Serial.print(g);
-    Serial.print(' ');
     if (g>=256) {change = false;}
   }
   if (server.arg("b")== "") 
@@ -222,8 +190,6 @@ void changeLampColor(){
   else
   { // параметр найден
     b = server.arg("b").toInt();
-    Serial.print(b);
-    Serial.print('\n');
     if (b>=256) {change = false;}
   }
 
@@ -241,7 +207,6 @@ void changeLampColor(){
     server.send (404, "text/plain", "Error 404");
   }
 
-
 }
 
 void chooseMode (){
@@ -256,7 +221,6 @@ void chooseMode (){
   else
   { // параметр найден
     mode = (server.arg("mode")).toInt();
-    Serial.println(mode);
     if (mode>=totalModes) {isTrue = false;}
   }
   server.send(200);
@@ -299,14 +263,14 @@ void GarlandBlink(int wait){
 
 void GarlandFade(int FadeSpeed)
 {
-  int step = garlandBright / 6 ;
-  for (int i = garlandBright; i > 2; i-=step)
+  int step = garlandBright / 5 ;
+  for (int i = garlandBright; i > 3; i-=step)
   {
     strip.setBrightness(i);
     strip.show();
     delay(FadeSpeed);
   }
-  for (int i = 2; i < garlandBright; i+=step)
+  for (int i = 3; i < garlandBright; i+=step)
   {
     strip.setBrightness(i);
     strip.show();

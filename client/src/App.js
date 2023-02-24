@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ConnectionWindow from "./components/ConnectionWindow/ConnectionWindow";
 import ListOfLamp from "./components/ListOfLamp/ListOfLamp";
 
-import { GetConnection } from "./api/GET";
+import { GetConnection, GetGarland } from "./api/GET";
 import ListOfModes from "./components/ListOfModes/ListOfModes";
 
 function App() {
@@ -14,6 +14,8 @@ function App() {
 
   const [isLampsPage, setIsLampsPage] = useState(true);
 
+  const [garland, setGarland] = useState([{ id: 0, r: 200, g: 0, b: 0 }]);
+  const [totalLamps, setTotalLamps] = useState(0);
   const [bright, setBright] = useState(10);
 
   const ConnectionToDevice = async () => {
@@ -23,6 +25,11 @@ function App() {
   useEffect(() => {
     ConnectionToDevice();
   }, []);
+
+  //Getting information about garland from server
+  useEffect(() => {
+    GetGarland(setGarland, setTotalLamps);
+  }, [device]);
 
   return (
     <div className="App">
@@ -34,7 +41,14 @@ function App() {
       />
       {isConnection ? (
         isLampsPage ? (
-          <ListOfLamp bright={bright} setBright={setBright} />
+          <ListOfLamp
+            garland={garland}
+            setGarland={setGarland}
+            totalLamps={totalLamps}
+            setTotalLamps={setTotalLamps}
+            bright={bright}
+            setBright={setBright}
+          />
         ) : (
           <ListOfModes activeMode={activeMode} setActiveMode={setActiveMode} />
         )
